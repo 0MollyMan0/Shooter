@@ -23,6 +23,8 @@ while running:
 
     game.player.all_projectiles.draw(screen)
     
+    game.all_monsters.draw(screen)
+    
     if (game.pressed.get(pygame.K_RIGHT) or game.pressed.get(pygame.K_d)) and game.player.rect.x - 40 < screen.get_width() - game.player.rect.width:
         game.player.move_right()
     elif (game.pressed.get(pygame.K_LEFT) or game.pressed.get(pygame.K_a)) and game.player.rect.x > -40:
