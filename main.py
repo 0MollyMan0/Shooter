@@ -18,6 +18,9 @@ while running:
 
     screen.blit(game.player.image, game.player.rect)
 
+    for projectile in game.player.all_projectiles:
+        projectile.move()
+
     game.player.all_projectiles.draw(screen)
     
     if (game.pressed.get(pygame.K_RIGHT) or game.pressed.get(pygame.K_d)) and game.player.rect.x - 40 < screen.get_width() - game.player.rect.width:
