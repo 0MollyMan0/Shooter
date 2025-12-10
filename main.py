@@ -20,6 +20,9 @@ while running:
 
     for projectile in game.player.all_projectiles:
         projectile.move()
+    
+    for monster in game.all_monsters:
+        monster.forward()
 
     game.player.all_projectiles.draw(screen)
     
