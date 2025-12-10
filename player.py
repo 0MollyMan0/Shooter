@@ -1,4 +1,5 @@
 import pygame
+from projetctile import Projectile
 
 class Player(pygame.sprite.Sprite):
 
@@ -8,6 +9,7 @@ class Player(pygame.sprite.Sprite):
         self.max_health = 100
         self.attack = 10
         self.velocity = 2
+        self.all_projectiles = pygame.sprite.Group()
         self.image = pygame.image.load('./assets/player.png')
         self.rect = self.image.get_rect()
         self.rect.x = 400
@@ -18,3 +20,6 @@ class Player(pygame.sprite.Sprite):
 
     def move_left(self):
         self.rect.x -= self.velocity
+
+    def lauch_projectile(self):
+        self.all_projectiles.add(Projectile())
