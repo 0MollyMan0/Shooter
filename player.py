@@ -22,4 +22,4 @@ class Player(pygame.sprite.Sprite):
         self.rect.x -= self.velocity
 
     def lauch_projectile(self):
-        self.all_projectiles.add(Projectile())
+        self.all_projectiles.add(Projectile(self))
