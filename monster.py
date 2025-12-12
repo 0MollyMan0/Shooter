@@ -1,4 +1,5 @@
 import pygame
+import random
 
 class Monster(pygame.sprite.Sprite):
 
@@ -8,16 +9,17 @@ class Monster(pygame.sprite.Sprite):
         self.health = 100
         self.max_health = 100
         self.attack = 5
-        self.velocity = 1
+        self.velocity = random.uniform(0.2, 2)
         self.image = pygame.image.load('./assets/mummy.png')
         self.rect = self.image.get_rect()
-        self.rect.x = 1080
+        self.rect.x = 1080 + random.randint(0, 300)
         self.rect.y = 540
 
     def damage(self, amount):
         self.health -= amount
         if self.health <= 0:
-            self.rect.x = 1100
+            self.rect.x = 1080 + random.randint(0, 300)
+            self.velocity = random.uniform(0.2, 2)
             self.health = self.max_health
 
     def update_health_bar(self, surface):
