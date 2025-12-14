@@ -5,8 +5,8 @@ class Player(pygame.sprite.Sprite):
 
     def __init__(self, game):
         super().__init__()
-        self.health = 100
-        self.max_health = 100
+        self.health = 1000
+        self.max_health = 1000
         self.attack = 10
         self.velocity = 2
         self.all_projectiles = pygame.sprite.Group()
@@ -22,8 +22,9 @@ class Player(pygame.sprite.Sprite):
     def update_health_bar(self, surface):
         bar_color = (111, 210, 46)
         back_bar_color = (60, 63, 60)
-        back_bar_position = [self.rect.x + 50, self.rect.y + 10, self.max_health, 7]
-        bar_position = [self.rect.x + 50, self.rect.y + 10, self.health, 7]
+        bar_width = (self.health / self.max_health) * 100
+        back_bar_position = [self.rect.x + 50, self.rect.y + 10, 100, 7]
+        bar_position = [self.rect.x + 50, self.rect.y + 10, bar_width, 7]
         pygame.draw.rect(surface, back_bar_color, back_bar_position)
         pygame.draw.rect(surface, bar_color, bar_position)
 
