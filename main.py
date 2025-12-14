@@ -4,9 +4,21 @@ from game import Game
 pygame.init()
 
 pygame.display.set_caption("Shooter") # add a custom icon here in the future
-screen = pygame.display.set_mode((1080, 720))
+screen_width = 1080
+screen_height = 720
+screen = pygame.display.set_mode((screen_width, screen_height))
 
 background = pygame.image.load('assets/bg.jpg')
+
+banner_width, banner_height = 500, 500
+banner = pygame.transform.scale(pygame.image.load('./assets/banner.png'), (banner_width, banner_height))
+banner_x = screen_width / 2 - banner_width / 2
+banner_y = (screen_height / 2 - banner_height / 2) - 80
+
+play_button_width, play_button_height = 400, 150
+play_button = pygame.transform.scale(pygame.image.load('./assets/button.png'), (play_button_width, play_button_height))
+play_button_x = (screen_width / 2 - play_button_width / 2) + 10
+play_button_y = banner_height - 50
 
 game = Game()
 
@@ -16,23 +28,11 @@ while running:
 
     screen.blit(background, (0, -200))
 
-    screen.blit(game.player.image, game.player.rect)
-
-    for projectile in game.player.all_projectiles:
-        projectile.move()
-    
-    for monster in game.all_monsters:
-        monster.forward()
-        monster.update_health_bar(screen)
-
-    game.player.all_projectiles.draw(screen)
-    game.player.update_health_bar(screen)
-    game.all_monsters.draw(screen)
-    
-    if (game.pressed.get(pygame.K_RIGHT) or game.pressed.get(pygame.K_d)) and game.player.rect.x - 40 < screen.get_width() - game.player.rect.width:
-        game.player.move_right()
-    elif (game.pressed.get(pygame.K_LEFT) or game.pressed.get(pygame.K_a)) and game.player.rect.x > -40:
-        game.player.move_left()
+    if game.is_playing:
+        game.update_game(screen)
+    else:
+        screen.blit(banner, (banner_x, banner_y))
+        screen.blit(play_button, (play_button_x, play_button_y))      
 
     pygame.display.flip()
 
