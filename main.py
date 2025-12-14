@@ -26,7 +26,7 @@ while running:
         monster.update_health_bar(screen)
 
     game.player.all_projectiles.draw(screen)
-    
+    game.player.update_health_bar(screen)
     game.all_monsters.draw(screen)
     
     if (game.pressed.get(pygame.K_RIGHT) or game.pressed.get(pygame.K_d)) and game.player.rect.x - 40 < screen.get_width() - game.player.rect.width:

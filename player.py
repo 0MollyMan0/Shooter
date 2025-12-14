@@ -16,6 +16,17 @@ class Player(pygame.sprite.Sprite):
         self.rect.y = 500
         self.game = game
     
+    def damage(self, amount):
+        self.health -= amount
+
+    def update_health_bar(self, surface):
+        bar_color = (111, 210, 46)
+        back_bar_color = (60, 63, 60)
+        back_bar_position = [self.rect.x + 50, self.rect.y + 10, self.max_health, 7]
+        bar_position = [self.rect.x + 50, self.rect.y + 10, self.health, 7]
+        pygame.draw.rect(surface, back_bar_color, back_bar_position)
+        pygame.draw.rect(surface, bar_color, bar_position)
+
     def move_right(self):
         if not self.game.check_collision(self, self.game.all_monsters):
             self.rect.x += self.velocity
