@@ -17,7 +17,8 @@ class Player(pygame.sprite.Sprite):
         self.game = game
     
     def damage(self, amount):
-        self.health -= amount
+        if self.health - amount > amount:
+            self.health -= amount
 
     def update_health_bar(self, surface):
         bar_color = (111, 210, 46)
