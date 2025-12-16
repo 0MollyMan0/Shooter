@@ -30,27 +30,27 @@ running = True
 
 while running:
 
-    screen.blit(background, (0, -200))
+	screen.blit(background, (0, -200))
 
-    if game.is_playing:
-        game.update_game(screen)
-    else:
-        screen.blit(play_button, play_button_rect)  
-        screen.blit(banner, banner_rect)
-        
-    pygame.display.flip()
-    clock.tick(60)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-            pygame.quit()
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_v or event.key == pygame.K_SPACE:
-                game.player.lauch_projectile()
-            game.pressed[event.key] = True
-        elif event.type == pygame.KEYUP:
-            game.pressed[event.key] = False
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            if play_button_rect.collidepoint(event.pos):
-                game.start()
+	if game.is_playing:
+		game.update_game(screen)
+	else:
+		screen.blit(play_button, play_button_rect)  
+		screen.blit(banner, banner_rect)
+
+	pygame.display.flip()
+	clock.tick(60)
+	for event in pygame.event.get():
+		if event.type == pygame.QUIT:
+			running = False
+			pygame.quit()
+		elif event.type == pygame.KEYDOWN:
+			if event.key == pygame.K_v or event.key == pygame.K_SPACE:
+				game.player.lauch_projectile()
+			game.pressed[event.key] = True
+		elif event.type == pygame.KEYUP:
+			game.pressed[event.key] = False
+		elif event.type == pygame.MOUSEBUTTONDOWN:
+			if play_button_rect.collidepoint(event.pos):
+				game.start()
     
