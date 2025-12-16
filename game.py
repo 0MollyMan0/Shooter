@@ -1,6 +1,7 @@
 import pygame
 from player import Player
 from monster import Monster
+from comet_event import CometFallEvent
 
 class Game:
 
@@ -11,6 +12,7 @@ class Game:
         self.all_players.add(self.player)
         self.all_monsters = pygame.sprite.Group()
         self.pressed = {}
+        self.comet_event = CometFallEvent()
 
     def game_over(self):
         self.is_playing = False
@@ -35,6 +37,7 @@ class Game:
         screen.blit(self.player.image, self.player.rect)
         self.player.all_projectiles.draw(screen)
         self.player.update_health_bar(screen)
+        self.comet_event.update_bar(screen)
         self.all_monsters.draw(screen)
 
         if (self.pressed.get(pygame.K_RIGHT) or self.pressed.get(pygame.K_d)) and self.player.rect.x - 40 < screen.get_width() - self.player.rect.width:

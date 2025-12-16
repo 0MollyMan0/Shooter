@@ -23,9 +23,12 @@ class Player(pygame.sprite.Sprite):
     def update_health_bar(self, surface):
         bar_color = (111, 210, 46)
         back_bar_color = (60, 63, 60)
+
         bar_width = (self.health / self.max_health) * 100
+
         back_bar_position = [self.rect.x + 50, self.rect.y + 10, 100, 7]
         bar_position = [self.rect.x + 50, self.rect.y + 10, bar_width, 7]
+        
         pygame.draw.rect(surface, back_bar_color, back_bar_position)
         pygame.draw.rect(surface, bar_color, bar_position)
 
