@@ -24,6 +24,8 @@ play_button_rect.x = math.ceil(screen.get_width() / 3.33) + 10
 play_button_rect.y = math.ceil(screen.get_height() / 2) + 30
 game = Game()
 
+clock = pygame.time.Clock()
+
 running = True
 
 while running:
@@ -37,7 +39,7 @@ while running:
         screen.blit(banner, banner_rect)
         
     pygame.display.flip()
-
+    clock.tick(60)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -51,3 +53,4 @@ while running:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if play_button_rect.collidepoint(event.pos):
                 game.start()
+    
