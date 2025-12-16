@@ -12,13 +12,13 @@ class Player(pygame.sprite.Sprite):
         self.all_projectiles = pygame.sprite.Group()
         self.image = pygame.image.load('./assets/player.png')
         self.rect = self.image.get_rect()
-        self.rect.x = 400
-        self.rect.y = 500
         self.game = game
     
     def damage(self, amount):
         if self.health - amount > amount:
             self.health -= amount
+        else:
+            self.game.game_over()
 
     def update_health_bar(self, surface):
         bar_color = (111, 210, 46)
