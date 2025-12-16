@@ -15,13 +15,8 @@ class Game:
         self.spawn_monster()
 
     def update_game(self, screen):
-        if (self.pressed.get(pygame.K_RIGHT) or self.pressed.get(pygame.K_d)) and self.player.rect.x - 40 < screen.get_width() - self.player.rect.width:
-            self.player.move_right()
-        elif (self.pressed.get(pygame.K_LEFT) or self.pressed.get(pygame.K_a)) and self.player.rect.x > -40:
-            self.player.move_left()
-
         for projectile in self.player.all_projectiles:
-                    projectile.move()
+            projectile.move()
     
         for monster in self.all_monsters:
             monster.forward()
@@ -32,6 +27,10 @@ class Game:
         self.player.update_health_bar(screen)
         self.all_monsters.draw(screen)
 
+        if (self.pressed.get(pygame.K_RIGHT) or self.pressed.get(pygame.K_d)) and self.player.rect.x - 40 < screen.get_width() - self.player.rect.width:
+            self.player.move_right()
+        elif (self.pressed.get(pygame.K_LEFT) or self.pressed.get(pygame.K_a)) and self.player.rect.x > -40:
+            self.player.move_left()
 
     def check_collision(self, sprite, group):
         return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)

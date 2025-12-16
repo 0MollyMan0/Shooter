@@ -1,4 +1,5 @@
 import pygame
+import math
 from game import Game
 
 pygame.init()
@@ -12,14 +13,15 @@ background = pygame.image.load('assets/bg.jpg')
 
 banner_width, banner_height = 500, 500
 banner = pygame.transform.scale(pygame.image.load('./assets/banner.png'), (banner_width, banner_height))
-banner_x = screen_width / 2 - banner_width / 2
-banner_y = (screen_height / 2 - banner_height / 2) - 80
+banner_rect = banner.get_rect()
+banner_rect.x = math.ceil(screen.get_width() / 4)
+banner_rect.y = 20
 
 play_button_width, play_button_height = 400, 150
 play_button = pygame.transform.scale(pygame.image.load('./assets/button.png'), (play_button_width, play_button_height))
-play_button_x = (screen_width / 2 - play_button_width / 2) + 10
-play_button_y = banner_height - 50
-
+play_button_rect = play_button.get_rect()
+play_button_rect.x = math.ceil(screen.get_width() / 3.33) + 10
+play_button_rect.y = math.ceil(screen.get_height() / 2) + 30
 game = Game()
 
 running = True
@@ -31,9 +33,9 @@ while running:
     if game.is_playing:
         game.update_game(screen)
     else:
-        screen.blit(banner, (banner_x, banner_y))
-        screen.blit(play_button, (play_button_x, play_button_y))      
-
+        screen.blit(play_button, play_button_rect)  
+        screen.blit(banner, banner_rect)
+        
     pygame.display.flip()
 
     for event in pygame.event.get():
@@ -46,3 +48,6 @@ while running:
             game.pressed[event.key] = True
         elif event.type == pygame.KEYUP:
             game.pressed[event.key] = False
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if play_button_rect.collidepoint(event.pos):
+                game.is_playing = True
