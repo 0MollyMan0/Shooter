@@ -4,11 +4,13 @@ class CometFallEvent():
 
     def __init__(self):
         self.percent = 0
+        self.percent_speed = 5
 
     def add_percent(self):
-        self.percent += 1
+        self.percent += self.percent_speed / 100
 
     def update_bar(self, surface):
+        self.add_percent()
         pygame.draw.rect(
             surface, 
             (0, 0, 0), 
