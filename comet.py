@@ -22,5 +22,9 @@ class Comet(pygame.sprite.Sprite):
             self.comet_event.game.player.damage(self.attack)
             self.remove()
 
+        for monster in self.comet_event.game.check_collision(self, self.comet_event.game.all_monsters):
+            monster.damage(self.attack)
+            self.remove()
+
         if self.rect.y >= 530:
             self.remove()
