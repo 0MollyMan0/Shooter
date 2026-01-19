@@ -9,8 +9,20 @@ class CometFallEvent():
 	def add_percent(self):
 		self.percent += self.percent_speed / 100
 
+	def is_full_loaded(self):
+		return self.percent >= 100
+	
+	def reset_percent(self):
+		self.percent = 0
+
+	def attempt_fall(self):
+		if self.is_full_loaded():
+			print("Comet bar full")
+			self.reset_percent()
+
 	def update_bar(self, surface):
 		self.add_percent()
+		self.attempt_fall()
 		pygame.draw.rect(
 			surface, 
 			(0, 0, 0), 
