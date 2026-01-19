@@ -18,11 +18,10 @@ class CometFallEvent():
 		self.percent = 0
 
 	def comet_fall(self):
-		self.all_comets.add(Comet())
+		self.all_comets.add(Comet(self))
 
 	def attempt_fall(self):
 		if self.is_full_loaded():
-			print("Comet bar full")
 			self.comet_fall()
 			self.reset_percent()
 
