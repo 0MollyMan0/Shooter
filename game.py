@@ -36,6 +36,7 @@ class Game:
 
 		screen.blit(self.player.image, self.player.rect)
 		self.player.all_projectiles.draw(screen)
+		self.comet_event.all_comets.draw(screen)
 		self.player.update_health_bar(screen)
 		self.comet_event.update_bar(screen)
 		self.all_monsters.draw(screen)
