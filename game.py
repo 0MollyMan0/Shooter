@@ -12,7 +12,7 @@ class Game:
 		self.all_players.add(self.player)
 		self.all_monsters = pygame.sprite.Group()
 		self.pressed = {}
-		self.comet_event = CometFallEvent()
+		self.comet_event = CometFallEvent(self)
 
 	def game_over(self):
 		self.is_playing = False
