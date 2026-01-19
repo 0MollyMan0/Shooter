@@ -34,6 +34,9 @@ class Game:
 			monster.forward()
 			monster.update_health_bar(screen)
 
+		for comet in self.comet_event.all_comets:
+			comet.fall()
+
 		screen.blit(self.player.image, self.player.rect)
 		self.player.all_projectiles.draw(screen)
 		self.comet_event.all_comets.draw(screen)
