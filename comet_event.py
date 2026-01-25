@@ -25,7 +25,7 @@ class CometFallEvent():
 	def attempt_fall(self):
 		if self.is_full_loaded() and len(self.game.all_monsters) == 0:
 			self.fall_mode = True
-			for i in range(10):
+			for i in range(20):
 				self.comet_fall()
 
 	def update_bar(self, surface):
