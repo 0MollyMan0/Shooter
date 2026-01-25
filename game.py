@@ -23,10 +23,14 @@ class Game:
 		self.is_playing = True
 		self.player.rect.x = 200
 		self.player.rect.y = 500
-		self.spawn_monster()
-		self.spawn_monster()
+		for i in range(2):
+			self.spawn_monster()
 
 	def update_game(self, screen):
+		if len(self.all_monsters) == 0 and self.comet_event.fall_mode == False:
+			for i in range(2):
+				self.spawn_monster()
+
 		for projectile in self.player.all_projectiles:
 			projectile.move()
     

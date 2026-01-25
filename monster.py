@@ -9,7 +9,7 @@ class Monster(pygame.sprite.Sprite):
 		self.health = 100
 		self.max_health = 100
 		self.attack = 5
-		self.velocity = random.uniform(0.2, 1.2)
+		self.velocity = random.uniform(1, 2)
 		self.image = pygame.image.load('./assets/mummy.png')
 		self.rect = self.image.get_rect()
 		self.rect.x = 1080 + random.randint(0, 300)
@@ -21,6 +21,9 @@ class Monster(pygame.sprite.Sprite):
 			self.rect.x = 1080 + random.randint(0, 300)
 			self.velocity = random.uniform(0.2, 2)
 			self.health = self.max_health
+			if self.game.comet_event.is_full_loaded():
+				self.game.all_monsters.remove(self)
+				self.game.comet_event.attempt_fall()
 
 	def update_health_bar(self, surface):
 		bar_color = (111, 210, 46)

@@ -22,7 +22,7 @@ play_button = pygame.transform.scale(pygame.image.load('./assets/button.png'), (
 play_button_rect = play_button.get_rect()
 play_button_rect.x = math.ceil(screen.get_width() / 3.33) + 10
 play_button_rect.y = math.ceil(screen.get_height() / 2) + 30
-game = Game()
+game = Game() 
 
 clock = pygame.time.Clock()
 

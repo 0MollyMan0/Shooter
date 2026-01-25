@@ -28,3 +28,7 @@ class Comet(pygame.sprite.Sprite):
 
         if self.rect.y >= 530:
             self.remove()
+        
+        if len(self.comet_event.all_comets) == 0:
+            self.comet_event.reset_percent()
+            self.comet_event.fall_mode = False
