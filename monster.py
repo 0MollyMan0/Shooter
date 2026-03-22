@@ -5,12 +5,12 @@ import animation
 class Monster(animation.AnimateSprite):
 
 	def __init__(self, game):
-		super().__init__("mummy")
+		self.velocity = random.uniform(0.5, 3)
+		super().__init__("mummy", self.velocity)
 		self.game = game
 		self.health = 100
 		self.max_health = 100
 		self.attack = 5
-		self.velocity = random.uniform(1, 2)
 		self.rect = self.image.get_rect()
 		self.rect.x = 1080 + random.randint(0, 300)
 		self.rect.y = 540
@@ -25,9 +25,6 @@ class Monster(animation.AnimateSprite):
 				self.game.all_monsters.remove(self)
 				self.game.comet_event.attempt_fall()
 
-	def update_animation(self):
-		self.animate()
-
 	def update_health_bar(self, surface):
 		bar_color = (111, 210, 46)
 		back_bar_color = (60, 63, 60)
@@ -38,6 +35,8 @@ class Monster(animation.AnimateSprite):
 
 	def forward(self):
 		if not self.game.check_collision(self, self.game.all_players):
+			self.animate(0)
 			self.rect.x -= self.velocity
 		else:
 			self.game.player.damage(self.attack)
+			self.animate(1)
