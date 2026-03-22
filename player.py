@@ -13,7 +13,7 @@ class Player(pygame.sprite.Sprite):
 		self.image = pygame.image.load('./assets/player.png')
 		self.rect = self.image.get_rect()
 		self.game = game
-    
+	
 	def damage(self, amount):
 		if self.health - amount > amount:
 			self.health -= amount
@@ -28,7 +28,7 @@ class Player(pygame.sprite.Sprite):
 
 		back_bar_position = [self.rect.x + 50, self.rect.y + 10, 100, 7]
 		bar_position = [self.rect.x + 50, self.rect.y + 10, bar_width, 7]
-        
+		
 		pygame.draw.rect(surface, back_bar_color, back_bar_position)
 		pygame.draw.rect(surface, bar_color, bar_position)
 
